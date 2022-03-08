@@ -353,9 +353,9 @@ async function send(
   const signature = _signMessage(message, private_key);
   const l2tx: L2Transaction = { raw: raw_l2tx, signature };
   console.log("L2Transaction:", l2tx);
-  const l2TxHash = await godwoken.submitL2Transaction(l2tx);
-  // const run_result = await godwoken.executeL2Transaction(l2tx)
-  console.log("l2 tx hash:", l2TxHash);
+  // const l2TxHash = await godwoken.submitL2Transaction(l2tx);
+  const run_result = await godwoken.executeL2Transaction(l2tx)
+  console.log("error:", run_result);
 
   const eth_tx_hash = polyjuice.calcEthTxHash(
     to_address,
