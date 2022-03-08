@@ -373,7 +373,7 @@ async function send(
   let receipt;
   for (let i = 0; i < 300; i += loopInterval) {
     console.log(`waiting for transaction receipt ... waiting for ${i} seconds`);
-    receipt = await godwoken.getTransactionReceipt(l2TxHash);
+    receipt = await godwoken.getTransactionReceipt(run_result);
     if (receipt) {
       console.log("transaction receipt:", receipt);
       break;
