@@ -353,7 +353,7 @@ async function send(
   const signature = _signMessage(message, private_key);
   const l2tx: L2Transaction = { raw: raw_l2tx, signature };
   console.log("L2Transaction:", l2tx);
-  // const l2TxHash = await godwoken.submitL2Transaction(l2tx);
+  const l2TxHash = await godwoken.submitL2Transaction(l2tx);
   const run_result = await godwoken.executeL2Transaction(l2tx)
   console.log("error:", run_result);
 
@@ -373,7 +373,7 @@ async function send(
   let receipt;
   for (let i = 0; i < 300; i += loopInterval) {
     console.log(`waiting for transaction receipt ... waiting for ${i} seconds`);
-    receipt = await godwoken.getTransactionReceipt(run_result);
+    receipt = await godwoken.getTransactionReceipt(l2TxHash);
     if (receipt) {
       console.log("transaction receipt:", receipt);
       break;
